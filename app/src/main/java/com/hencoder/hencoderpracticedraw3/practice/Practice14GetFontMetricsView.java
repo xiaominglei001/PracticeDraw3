@@ -11,7 +11,7 @@ import android.view.View;
 public class Practice14GetFontMetricsView extends View {
     Paint paint1 = new Paint(Paint.ANTI_ALIAS_FLAG);
     Paint paint2 = new Paint(Paint.ANTI_ALIAS_FLAG);
-    String[] texts = {"A", "a", "J", "j", "Â", "â"};
+    String[] texts = { "A", "a", "J", "j", "Â", "â" };
     int top = 200;
     int bottom = 400;
 
@@ -45,11 +45,15 @@ public class Practice14GetFontMetricsView extends View {
         // 这种居中算法的优点是，可以让不同的文字的 baseline 对齐
 
         int middle = (top + bottom) / 2;
-        canvas.drawText(texts[0], 100, middle, paint2);
-        canvas.drawText(texts[1], 200, middle, paint2);
-        canvas.drawText(texts[2], 300, middle, paint2);
-        canvas.drawText(texts[3], 400, middle, paint2);
-        canvas.drawText(texts[4], 500, middle, paint2);
-        canvas.drawText(texts[5], 600, middle, paint2);
+
+        Paint.FontMetrics fontMetrics = paint2.getFontMetrics();
+
+        float offset = -(fontMetrics.ascent + fontMetrics.descent) / 2;
+        canvas.drawText(texts[0], 100, middle + offset, paint2);
+        canvas.drawText(texts[1], 200, middle + offset, paint2);
+        canvas.drawText(texts[2], 300, middle + offset, paint2);
+        canvas.drawText(texts[3], 400, middle + offset, paint2);
+        canvas.drawText(texts[4], 500, middle + offset, paint2);
+        canvas.drawText(texts[5], 600, middle + offset, paint2);
     }
 }
